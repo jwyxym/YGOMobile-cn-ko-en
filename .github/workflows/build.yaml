@@ -69,6 +69,24 @@ jobs:
         zip -r scripts.zip script
         mv *.zip mobile/assets/data/
 
+    - name: Prepare So
+      run: |
+        cd mobile/libs
+        mkdir x86
+        mkdir x86_64
+        mkdir arm64-v8a
+        mkdir armeabi-v7a
+
+        cd x86
+        wget https://github.com/jwyxym/ygopru/releases/download/ygomobile-latest/ygoserver-android-x86.ygomobile_support.so -O libygoserver.so
+        cd ../x86_64
+        wget https://github.com/jwyxym/ygopru/releases/download/ygomobile-latest/ygoserver-android-x86_64.ygomobile_support.so -O libygoserver.so
+        cd ../arm64-v8a
+        wget https://github.com/jwyxym/ygopru/releases/download/ygomobile-latest/ygoserver-android-arm64-v8a.ygomobile_support.so -O libygoserver.so
+        cd ../armeabi-v7a
+        wget https://github.com/jwyxym/ygopru/releases/download/ygomobile-latest/ygoserver-android-armeabi-v7a.ygomobile_support.so -O libygoserver.so
+
+
     - name: Prepare DB
       run: |
         git clone https://github.com/mycard/ygopro-database.git --depth 1 ygopro-database
